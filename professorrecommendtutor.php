@@ -30,7 +30,7 @@
 			<input type="text" class="form-control" id="GTID" placeholder="GTID" required autofocus>
 			<br></br>
 			<p align="left">Descriptive Evaluation:</p>
-			<textarea style="width:400px;" rows="4"></textarea>
+			<textarea style="width:400px;" rows="4" maxlength="300"></textarea>
 			<br></br>
 
 			<p align="left">Numeric Evaluation:</p>
@@ -61,7 +61,7 @@
 					</label>
 				</div>
 			</div>
-			<button class="btn btn-lg btn-primary btn-block" id="login" type="submit">Log In</button>
+			<button class="btn btn-lg btn-primary btn-block" id="login" type="submit">Submit</button>
 
 		</form>
 	</div>
