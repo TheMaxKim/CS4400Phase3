@@ -1,4 +1,3 @@
-<html>
 <html lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
@@ -73,6 +72,7 @@
 				<option value="23">11:00 PM</option>
 			</select>
 
+			<button class="btn btn-lg btn-primary btn-block">Search Tutors</button>
 
 			<a class="btn btn-lg btn-primary btn-block">Exit</a>
 

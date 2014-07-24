@@ -1,4 +1,3 @@
-<html>
 <html lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
@@ -32,7 +31,7 @@
 			<p align="left">Password:</p>
 			<input type="password" class="form-control" id="password" placeholder="Password">
 			<br></br>
-			<button class="btn btn-lg btn-primary btn-block" id="login" type="submit">Log In</button>
+			<button class="btn btn-lg btn-primary btn-block" id="loginsubmit" name="submit" type="submit">Log In</button>
 		</form>
 	</div>
 
@@ -43,3 +42,48 @@
 
 </body>
 </html>
+
+<?php
+
+	$link = mysql_connect('localhost', 'cs4400_Group_21', 'Z8TqPp8P');
+	if (!$link) {
+		die('Could not connect: ' . mysql_error());
+	}
+	mysql_select_db(‘cs4400_Group_21’);
+
+	mysql_close($link);
+
+
+	if (isset($_POST['submit'])) {
+
+		if(!$_POST['username'] | !$_POST['pass']) {
+
+ 			die('You did not fill in a required field.');
+
+ 		}
+
+
+		$findusername = mysql_query("SELECT * FROM users WHERE username = '".$_POST['GT_ID']."'") or die(mysql_error());
+
+		$numberfound = mysql_num_rows($check);
+
+		if ($numberfound == 0) {
+			die('That GTID does not exist in our database.');
+		}
+
+		while($info = mysql_fetch_array( $check )) 	
+
+		{
+
+			if ($_POST['password'] != $info['Password']) {
+
+				die('Incorrect password, please try again.');
+
+			} else {
+				header("Location: studenthome.php"); 
+			}
+
+
+		}
+	}
+?>
