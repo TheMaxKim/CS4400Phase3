@@ -23,13 +23,13 @@
 <body>
 	
 	<div class="container" style="text-align:center;">
-		<form class="form-signin" method="GET" action="./" role="form" style="max-width:400px;">
+		<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" class="form-signin" role="form" style="max-width:400px;">
 			<h1 align="center">Login</h1>
 			<p align="left">GTID:</p>
-			<input type="text" class="form-control" id="GTID" placeholder="GTID" required autofocus>
+			<input type="text" class="form-control" id="GTID" name="GTID" placeholder="GTID" required autofocus>
 			<br></br>
 			<p align="left">Password:</p>
-			<input type="password" class="form-control" id="password" placeholder="Password">
+			<input type="password" class="form-control" id="password" name="password" placeholder="Password">
 			<br></br>
 			<button class="btn btn-lg btn-primary btn-block" id="loginsubmit" name="submit" type="submit">Log In</button>
 		</form>
@@ -44,34 +44,31 @@
 </html>
 
 <?php
-
 	$link = mysql_connect('localhost', 'cs4400_Group_21', 'Z8TqPp8P');
 	if (!$link) {
 		die('Could not connect: ' . mysql_error());
 	}
-	mysql_select_db(‘cs4400_Group_21’);
-
-	mysql_close($link);
+	mysql_select_db('cs4400_Group_21');
 
 
 	if (isset($_POST['submit'])) {
 
-		if(!$_POST['username'] | !$_POST['pass']) {
+		if(!$_POST['GTID'] | !$_POST['password']) {
 
  			die('You did not fill in a required field.');
 
  		}
 
 
-		$findusername = mysql_query("SELECT * FROM users WHERE username = '".$_POST['GT_ID']."'") or die(mysql_error());
+		$finduser = mysql_query("SELECT * FROM User WHERE GT_ID = '".$_POST['GTID']."'") or die(mysql_error());
 
-		$numberfound = mysql_num_rows($check);
+		$numberfound = mysql_num_rows($finduser);
 
 		if ($numberfound == 0) {
 			die('That GTID does not exist in our database.');
 		}
 
-		while($info = mysql_fetch_array( $check )) 	
+		while($info = mysql_fetch_array( $finduser ))
 
 		{
 
@@ -83,7 +80,8 @@
 				header("Location: studenthome.php"); 
 			}
 
-
 		}
 	}
+
+	mysql_close($link);
 ?>
